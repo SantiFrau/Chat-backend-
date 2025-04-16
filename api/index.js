@@ -3,7 +3,6 @@ import http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
 
 // Rutas y modelos
 import createUserRoutes from './routes/userRoutes.js';
@@ -37,7 +36,7 @@ const userRoutes = createUserRoutes({ AppModel });
 const chatRoutes = createChatsRoutes({ AppModel });
 
 app.use("/user", userRoutes);
-app.use("/chats", chatRoutes);
+app.use("/chat", chatRoutes);
 
 // WebSocket config
 const io = new Server(server, {
@@ -47,36 +46,8 @@ const io = new Server(server, {
   }
 });
 
-// Autenticación de socket con JWT
-io.use((socket, next) => {
-  const token = socket.handshake.query.token;
-  if (!token) return next(new Error('Token requerido'));
 
-  try {
-    const user = jwt.verify(token, process.env.JWT_SECRET);
-    socket.user = user;
-    next();
-  } catch (err) {
-    next(new Error('Token inválido'));
-  }
-});
 
-// Manejo de conexiones WebSocket
-io.on('connection', (socket) => {
-  console.log('✅ Usuario conectado:', socket.user.username);
-
-  socket.on('mensaje', (data) => {
-    console.log(`Mensaje recibido de ${socket.user.username}:`, data);
-    io.emit('mensaje', {
-      user: socket.user.username,
-      mensaje: data
-    });
-  });
-
-  socket.on('disconnect', () => {
-    console.log('❌ Usuario desconectado:', socket.user.username);
-  });
-});
 
 // Iniciar servidor
 server.listen(PORT, () => {

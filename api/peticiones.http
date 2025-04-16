@@ -1,0 +1,38 @@
+POST http://localhost:3001/user/register
+Content-Type: application/json
+
+{
+  "username": "santiago",
+  "password": "123456",
+  "img":"https://imgs.search.brave.com/rwE-hC6ESt3hBJZhImPkb-KvU26bLDKVe-OKv1y50-M/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzE0LzQz/LzU1LzE0NDM1NWQ3/YjM2YzVmNjQ2NDM1/NDIzNzk4MjgxY2U5/LmpwZw"
+}
+
+
+######
+
+POST http://localhost:3001/user/login
+Content-Type: application/json
+
+{
+  "username": "juanp",
+  "password": "123456"
+}
+
+
+#####
+GET http://localhost:3001/user/search?search=j
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFhMDQzZWU0LTkyZDMtNGM1NC05YzBkLTI0NDdhMDRjYTIyZiIsInVzZXJuYW1lIjoiam9obl9kb2UiLCJpbWciOm51bGwsImlhdCI6MTc0NDgzNzIyOSwiZXhwIjoxNzQ0ODQ0NDI5fQ.Z1lEBv5z_Lq6J64HGnnmEJZ5QbQ7F53XozF-S_je_lM
+
+
+######
+
+GET http://localhost:3001/user/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOm51bGwsImlhdCI6MTc0NDgzODIwNCwiZXhwIjoxNzQ0ODQ1NDA0fQ.5JfMD6K7CRPYW6PX8WCuAgeIqC_QrzjXi269dCyaszs
+
+
+####
+POST http://localhost:3001/chat/create/santiago
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOm51bGwsImlhdCI6MTc0NDgzODIwNCwiZXhwIjoxNzQ0ODQ1NDA0fQ.5JfMD6K7CRPYW6PX8WCuAgeIqC_QrzjXi269dCyaszs
+
+#####
+

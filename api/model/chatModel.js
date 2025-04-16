@@ -32,7 +32,7 @@ export default class chatModel {
   }
 
   // Crea un nuevo chat entre dos usuarios
-  static async crearChat({ userId1, userId2 }) {
+  static async createChat({ userId1, userId2 }) {
     try {
       const user1Exists = await this.existUser(userId1);
       const user2Exists = await this.existUser(userId2);
@@ -43,7 +43,7 @@ export default class chatModel {
 
       const existingChat = await this.chatExists(userId1, userId2);
       if (existingChat) {
-        return { message: "Ya existe un chat entre estos usuarios", success: false, chatId: existingChat.id };
+        return { error: "Ya existe un chat entre estos usuarios", success: false, chatId: existingChat.id };
       }
 
       const [result] = await connection.query(
@@ -105,4 +105,54 @@ export default class chatModel {
       return { error: error.message, success: false };
     }
   }
+   
+  //Obtener todos los chats del usuario
+  static async get_chats({userId}){
+
+   const sql = `
+   SELECT
+   c.id AS chatId,
+   u.id AS userId,
+   u.username,
+   u.img,
+   m.descripcion AS lastMessage,
+   m.fecha AS messageDate,
+   m.user_id = ? AS mine
+ FROM chats c
+ JOIN users u ON (u.id = IF(c.user_id1 = ?, c.user_id2, c.user_id1))
+ LEFT JOIN (
+   SELECT chat_id, descripcion, fecha, user_id
+   FROM mensajes
+   WHERE (chat_id, fecha) IN (
+     SELECT chat_id, MAX(fecha)
+     FROM mensajes
+     GROUP BY chat_id
+   )
+ ) m ON c.id = m.chat_id
+ WHERE c.user_id1 = ? OR c.user_id2 = ?
+ ORDER BY m.fecha DESC;
+ `
+  const [rows] = await connection.query(sql, [userId, userId, userId, userId]);
+
+  if(!rows.length>0){
+   return {error:"Error en la consulta",success:false}}
+
+  const chats = rows.map(row => ({
+    chatid: row.chatId,
+    user: {
+      username: row.username,
+      img: row.img
+    },
+    lastMessage: {
+      description: row.lastMessage,
+      date: new Date(row.messageDate).toLocaleString(),
+      mine: !!row.mine
+    }
+  }));
+
+  return {chats,success:true}
+  }
+  
+  
+ 
 }
