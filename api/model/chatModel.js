@@ -10,7 +10,7 @@ const config = {
 
 const connection = await mysql.createConnection(config);
 
-export class chatModel {
+export default class chatModel {
   // Verifica si un usuario existe por su ID
   static async existUser(id) {
     const [rows] = await connection.query(

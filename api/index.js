@@ -5,28 +5,51 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 
+// Rutas y modelos
+import createUserRoutes from './routes/userRoutes.js';
+import createChatsRoutes from './routes/chatRoutes.js';
+import chatModel from './model/chatModel.js';
+import userModel from './model/userModel.js';
+
+// Cargar variables de entorno
 dotenv.config();
 
 const app = express();
-//crear server para con node para pasarselo a sockeio y crear el websocket
-const server = http.createServer(app);
+const server = http.createServer(app); // Crear servidor HTTP con Express
+const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(cors()); //cors
-app.use(express.json()); //formatear los chuncks
+// Middlewares
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "DELETE", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+app.use(express.json()); // Parsear JSON
 
-// WebSocket
+// Modelos compartidos
+const AppModel = {
+  chatModel,
+  userModel
+};
+
+// Rutas
+const userRoutes = createUserRoutes({ AppModel });
+const chatRoutes = createChatsRoutes({ AppModel });
+
+app.use("/user", userRoutes);
+app.use("/chats", chatRoutes);
+
+// WebSocket config
 const io = new Server(server, {
   cors: {
     origin: '*',
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST']
   }
 });
 
-// Middleware auth con JWT para sockets
+// Autenticación de socket con JWT
 io.use((socket, next) => {
   const token = socket.handshake.query.token;
-
   if (!token) return next(new Error('Token requerido'));
 
   try {
@@ -38,6 +61,7 @@ io.use((socket, next) => {
   }
 });
 
+// Manejo de conexiones WebSocket
 io.on('connection', (socket) => {
   console.log('✅ Usuario conectado:', socket.user.username);
 
@@ -54,22 +78,7 @@ io.on('connection', (socket) => {
   });
 });
 
-// Endpoint para login y obtener token
-app.post('/api/login', (req, res) => {
-  const { username, password } = req.body;
-
-  // Simulación de auth
-  if (username === 'usuario1' && password === '1234') {
-    const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    return res.json({ token });
-  }
-
-  res.status(401).json({ error: 'Credenciales inválidas' });
-});
-
-
-
-const PORT = process.env.PORT || 3000;
+// Iniciar servidor
 server.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
