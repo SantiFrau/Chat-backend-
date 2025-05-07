@@ -2,7 +2,7 @@ POST http://localhost:3001/user/register
 Content-Type: application/json
 
 {
-  "username": "santiago",
+  "username": "anag",
   "password": "123456",
   "img":"https://imgs.search.brave.com/rwE-hC6ESt3hBJZhImPkb-KvU26bLDKVe-OKv1y50-M/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzE0LzQz/LzU1LzE0NDM1NWQ3/YjM2YzVmNjQ2NDM1/NDIzNzk4MjgxY2U5/LmpwZw"
 }
@@ -14,7 +14,7 @@ POST http://localhost:3001/user/login
 Content-Type: application/json
 
 {
-  "username": "juanp",
+  "username": "anag",
   "password": "123456"
 }
 
@@ -27,12 +27,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFhMDQzZWU0L
 ######
 
 GET http://localhost:3001/user/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOm51bGwsImlhdCI6MTc0NDgzODIwNCwiZXhwIjoxNzQ0ODQ1NDA0fQ.5JfMD6K7CRPYW6PX8WCuAgeIqC_QrzjXi269dCyaszs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOiJodHRwczovL2V4YW1wbGUuY29tL2ltYWdlcy9qdWFucC5qcGciLCJpYXQiOjE3NDY2NDI3NDIsImV4cCI6MTc0NjY0OTk0Mn0.goktnP_8s_SrpPNusw5B5V2pOiSXEZu5LXmD8CsOD5Y
 
 
 ####
-POST http://localhost:3001/chat/create/santiago
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOm51bGwsImlhdCI6MTc0NDgzODIwNCwiZXhwIjoxNzQ0ODQ1NDA0fQ.5JfMD6K7CRPYW6PX8WCuAgeIqC_QrzjXi269dCyaszs
+POST http://localhost:3001/chat/create/juanp
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmOWUzYjhhLTYxYTYtNDJjNS1hNTg4LWYyNWE4MGRlNTcwZiIsInVzZXJuYW1lIjoiYW5hZyIsImltZyI6Imh0dHBzOi8vaW1ncy5zZWFyY2guYnJhdmUuY29tL3J3RS1oQzZFU3QzaEJKWmhJbVBrYi1LdlUyNmJMREtWZS1PS3YxeTUwLU0vcnM6Zml0Ojg2MDowOjA6MC9nOmNlL2FIUjBjSE02THk5cExuQnAvYm1sdFp5NWpiMjB2YjNKcC9aMmx1WVd4ekx6RTBMelF6L0x6VTFMekUwTkRNMU5XUTMvWWpNMll6Vm1OalEyTkRNMS9OREl6TnprNE1qZ3hZMlU1L0xtcHdadyIsImlhdCI6MTc0NjY1MDg2NSwiZXhwIjoxNzQ2NjU4MDY1fQ.Ew2XPHD11LH7UQ_R2W15HnZ1o63AJLanJnF6zOvH_sQ
 
 #####
 
+GET http://localhost:3001/chat
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOiJodHRwczovL2V4YW1wbGUuY29tL2ltYWdlcy9qdWFucC5qcGciLCJpYXQiOjE3NDY2NDI3NDIsImV4cCI6MTc0NjY0OTk0Mn0.goktnP_8s_SrpPNusw5B5V2pOiSXEZu5LXmD8CsOD5Y

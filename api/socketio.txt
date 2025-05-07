@@ -1,0 +1,43 @@
+crear websocket en el server http ya existente
+const io = new Server(server, { cors: { origin: '*' } });
+
+
+escuchar conexiones
+io.on('connection', (socket) => {
+  console.log('Nuevo cliente conectado:', socket.id);
+});
+
+.on ("nombre del evento",(parametros)=>{
+     funcion que se ejecuta cuando ocurre ese evento
+})
+io = todo el servidor
+socket = hace referencia a ese usuaior que entro nomas
+
+
+Cada vez que un cliente se conecta, se ejecuta esta función. socket representa esa conexión en particular. Cada cliente tiene su propio socket.Y es una
+conexion distinta por cada ususario
+
+emitir un evento desde el cliente
+            nombre-evento , parametros
+socket.emit('join', 'usuario123');
+
+asi escuchamos ese evento
+socket.on('join', (userId) => {
+
+  socket.join(userId); // Une al cliente a una "sala" llamada userId
+
+  console.log(`Usuario ${userId} se unió a su sala`);
+});
+
+Las salas permiten agrupar conexiones. Así, podés enviar mensajes solo a ciertos usuarios.
+
+
+socket.on('send-message', ({ toUserId, message }) => {
+  io.to(toUserId).emit('receive-message', message); //envia un mensaje a todos los ususarios de esa sala
+});
+
+socket.on('receive-message', (mensaje) => {
+  console.log('Mensaje recibido:', mensaje);
+});
+
+en el front es mejor manejar el socket con un useRef para evitar que se cree muchas veces y genere conexiones multiples al backend
