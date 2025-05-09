@@ -41,3 +41,8 @@ socket.on('receive-message', (mensaje) => {
 });
 
 en el front es mejor manejar el socket con un useRef para evitar que se cree muchas veces y genere conexiones multiples al backend
+
+
+en los callbacks que se pasa al socket se crean una sola vez eso pasa con cualquier callback y los usestate por mas que cambien en esos callbacks ya
+definidos no cambian la solucion es usar un useRef a ese state y usar un efecto para modificar la referencia cada vez que canbie el estado
+o sino mover el listener a un useefect que este escuhando la dependencia

@@ -68,6 +68,9 @@ io.on('connection', (socket) => {
   
   socket.on('send-message', ({ chatId, message }) => {
     // Obtener todos los sockets conectados a esa sala
+    const mine = !message.mine
+    message = {...message , mine}
+
     const socketsInRoom = io.sockets.adapter.rooms.get(chatId);
     
     // Emitir el mensaje a todos los demás sockets en la sala (excepto al que lo envió)
