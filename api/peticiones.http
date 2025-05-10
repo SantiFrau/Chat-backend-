@@ -14,7 +14,7 @@ POST http://localhost:3001/user/login
 Content-Type: application/json
 
 {
-  "username": "anag",
+  "username": "juanp",
   "password": "123456"
 }
 
@@ -38,3 +38,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmOWUzYjhhL
 
 GET http://localhost:3001/chat
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOiJodHRwczovL2V4YW1wbGUuY29tL2ltYWdlcy9qdWFucC5qcGciLCJpYXQiOjE3NDY2NDI3NDIsImV4cCI6MTc0NjY0OTk0Mn0.goktnP_8s_SrpPNusw5B5V2pOiSXEZu5LXmD8CsOD5Y
+
+
+#####
+
+POST http://localhost:3001/chat/message/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOiJodHRwczovL2V4YW1wbGUuY29tL2ltYWdlcy9qdWFucC5qcGciLCJpYXQiOjE3NDY5MDY4NzAsImV4cCI6MTc0NjkxNDA3MH0.0AMfZCpyHpxx-tgaOkZ2Ipz1fzm9_CZytakErk3N3g4
+Content-Type: application/json
+
+{
+  "description": "hola",
+  "mine": true,
+  "date":"2025-04-16 18:18:00"
+}
+
+####
+
+GET http://localhost:3001/chat/message/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOiJodHRwczovL2V4YW1wbGUuY29tL2ltYWdlcy9qdWFucC5qcGciLCJpYXQiOjE3NDY5MDY4NzAsImV4cCI6MTc0NjkxNDA3MH0.0AMfZCpyHpxx-tgaOkZ2Ipz1fzm9_CZytakErk3N3g4

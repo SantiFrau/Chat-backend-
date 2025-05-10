@@ -9,8 +9,8 @@ import createUserRoutes from './routes/userRoutes.js';
 import createChatsRoutes from './routes/chatRoutes.js';
 import chatModel from './model/chatModel.js';
 import userModel from './model/userModel.js';
-import { validateTokenSocket } from './middleware/validateToken.js';
-
+import messageModel from './model/messageModel.js';
+import { socketHandler } from './socket/socket.js';
 // Cargar variables de entorno
 dotenv.config();
 
@@ -34,7 +34,8 @@ app.use(express.json()); // Parsear JSON
 // Modelos compartidos
 const AppModel = {
   chatModel,
-  userModel
+  userModel,
+  messageModel
 };
 
 // Rutas
@@ -52,45 +53,8 @@ const io = new Server(server, {
   }
 });
 
-io.use(validateTokenSocket)
+socketHandler({io,AppModel})
 
-io.on('connection', (socket) => {
-  console.log('Nuevo cliente conectado:', socket.id);
-
-  // Escucha para unirse a una sala
-  socket.on('join', (chatsId) => {
-    chatsId.forEach(id => {
-      socket.join(id);
-      console.log(`Usuario ${socket.user.username} se unió a la sala ${id}`);
-    });
-  });
-
-  
-  socket.on('send-message', ({ chatId, message }) => {
-    // Obtener todos los sockets conectados a esa sala
-    const mine = !message.mine
-    message = {...message , mine}
-
-    const socketsInRoom = io.sockets.adapter.rooms.get(chatId);
-    
-    // Emitir el mensaje a todos los demás sockets en la sala (excepto al que lo envió)
-    if (socketsInRoom) {
-      socketsInRoom.forEach((socketId) => {
-        if (socketId !== socket.id) {
-          io.to(socketId).emit('receive-message', { message ,username:socket.user.username });
-          console.log(`${socket.user.username} envió un mensaje a ${socketId}`);
-        }
-      });
-    }
-
-    console.log(`${socket.user.username} envió un mensaje a la sala ${chatId}`);
-  });
-
-  // Evento de desconexión
-  socket.on('disconnect', () => {
-    console.log('Cliente desconectado:', socket.id);
-  });
-});
 
 
 // Iniciar servidor

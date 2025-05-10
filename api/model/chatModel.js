@@ -121,13 +121,13 @@ export default class chatModel {
  FROM chats c
  JOIN users u ON (u.id = IF(c.user_id1 = ?, c.user_id2, c.user_id1))
  LEFT JOIN (
-   SELECT chat_id, descripcion, fecha, user_id
-   FROM mensajes
-   WHERE (chat_id, fecha) IN (
-     SELECT chat_id, MAX(fecha)
+   SELECT *
+   FROM (
+     SELECT *,
+            ROW_NUMBER() OVER (PARTITION BY chat_id ORDER BY fecha DESC) AS rn
      FROM mensajes
-     GROUP BY chat_id
-   )
+   ) sub
+   WHERE sub.rn = 1
  ) m ON c.id = m.chat_id
  WHERE c.user_id1 = ? OR c.user_id2 = ?
  ORDER BY m.fecha DESC;
