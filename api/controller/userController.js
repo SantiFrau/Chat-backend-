@@ -50,7 +50,9 @@ export default class userController {
 
   get_users = async (req, res) => {
     
-    const search = req.query.search;  
+    const search = req.query.search;
+    if(search == "")  {return res.status(200).json({success:true,users:[]})} 
+   
     const excludeId = req.user.id;
 
     const result = await this.Model.get_users({ search, excludeId });

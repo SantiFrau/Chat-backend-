@@ -20,8 +20,8 @@ Content-Type: application/json
 
 
 #####
-GET http://localhost:3001/user/search?search=j
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFhMDQzZWU0LTkyZDMtNGM1NC05YzBkLTI0NDdhMDRjYTIyZiIsInVzZXJuYW1lIjoiam9obl9kb2UiLCJpbWciOm51bGwsImlhdCI6MTc0NDgzNzIyOSwiZXhwIjoxNzQ0ODQ0NDI5fQ.Z1lEBv5z_Lq6J64HGnnmEJZ5QbQ7F53XozF-S_je_lM
+GET http://localhost:3001/user/search?search=
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOiJodHRwczovL2V4YW1wbGUuY29tL2ltYWdlcy9qdWFucC5qcGciLCJpYXQiOjE3NDcwODM3OTcsImV4cCI6MTc0NzA5MDk5N30.P0DsKwSrMW2dJVyT6OS_ahgv5Q1u6uCv1JMJ1xUAtEg
 
 
 ######
