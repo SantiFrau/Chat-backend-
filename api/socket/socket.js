@@ -10,6 +10,7 @@ export function socketHandler({io, AppModel}) {
       console.log('Nuevo cliente conectado:', socket.id);
   
       socket.on('join', (chatsId) => {
+        console.log("a")
         chatsId.forEach(id => {
           socket.join(id);
           console.log(`Usuario ${socket.user.username} se unió a la sala ${id}`);
