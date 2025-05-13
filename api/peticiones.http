@@ -31,8 +31,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhL
 
 
 ####
-POST http://localhost:3001/chat/create/juanp
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmOWUzYjhhLTYxYTYtNDJjNS1hNTg4LWYyNWE4MGRlNTcwZiIsInVzZXJuYW1lIjoiYW5hZyIsImltZyI6Imh0dHBzOi8vaW1ncy5zZWFyY2guYnJhdmUuY29tL3J3RS1oQzZFU3QzaEJKWmhJbVBrYi1LdlUyNmJMREtWZS1PS3YxeTUwLU0vcnM6Zml0Ojg2MDowOjA6MC9nOmNlL2FIUjBjSE02THk5cExuQnAvYm1sdFp5NWpiMjB2YjNKcC9aMmx1WVd4ekx6RTBMelF6L0x6VTFMekUwTkRNMU5XUTMvWWpNMll6Vm1OalEyTkRNMS9OREl6TnprNE1qZ3hZMlU1L0xtcHdadyIsImlhdCI6MTc0NjY1MDg2NSwiZXhwIjoxNzQ2NjU4MDY1fQ.Ew2XPHD11LH7UQ_R2W15HnZ1o63AJLanJnF6zOvH_sQ
+POST http://localhost:3001/chat/create/santiago
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOiJodHRwczovL2V4YW1wbGUuY29tL2ltYWdlcy9qdWFucC5qcGciLCJpYXQiOjE3NDcwOTcyNjMsImV4cCI6MTc0NzEwNDQ2M30.a8QeMyNTTxEKFpv1gqLtbZ_MoMK9Ihg6SJc9FM3w0MU
 
 #####
 
@@ -40,17 +40,6 @@ GET http://localhost:3001/chat
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOiJodHRwczovL2V4YW1wbGUuY29tL2ltYWdlcy9qdWFucC5qcGciLCJpYXQiOjE3NDY2NDI3NDIsImV4cCI6MTc0NjY0OTk0Mn0.goktnP_8s_SrpPNusw5B5V2pOiSXEZu5LXmD8CsOD5Y
 
 
-#####
-
-POST http://localhost:3001/chat/message/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2YjNlMjFhLTVmMGYtNGUxOS1iMmQ2LTdhNGM5NWExZmQwMSIsInVzZXJuYW1lIjoianVhbnAiLCJpbWciOiJodHRwczovL2V4YW1wbGUuY29tL2ltYWdlcy9qdWFucC5qcGciLCJpYXQiOjE3NDY5MDY4NzAsImV4cCI6MTc0NjkxNDA3MH0.0AMfZCpyHpxx-tgaOkZ2Ipz1fzm9_CZytakErk3N3g4
-Content-Type: application/json
-
-{
-  "description": "hola",
-  "mine": true,
-  "date":"2025-04-16 18:18:00"
-}
 
 ####
 

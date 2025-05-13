@@ -51,7 +51,7 @@ export default class messageModel{
     
                 return { success: true, messages };
             } else {
-                return { success: false, error: "No hay mensajes" };
+                return { success: true, messages:[] };
             }
         } catch (error) {
             return { success: false, error: "Error en la consulta BD" };
